@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Store } from "../../utils/Store";
 export default function ProductScreen() {
   const {state,dispatch}=useContext(Store)
+  const router=useRouter();
   const { query } = useRouter();
   const { slug } = query;
   const [product, setProduct] = useState([]);
@@ -33,6 +34,7 @@ export default function ProductScreen() {
         return;
     }
     dispatch({type:'CART_ADD_ITEM',payload:{...productData,quantity}});
+    router.push('/cart')
   }
   return (
     <Layout title={productData.name}>
